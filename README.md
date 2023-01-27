@@ -8,11 +8,17 @@ The paper deals with a non-linear medium-scale representative-agent New Keynesia
 
 The src folder contains all relevant files to run the model:
 
-## `/yamls`
-This folder contains to yaml files which contain the model. `model_ILT.yaml` for the model, where the central bank follows inflation-level targeting and `model_PLT.yaml`, where price-level targeting is implemented in the Taylor rule.
+## `model_ILT.yaml`
+RANK model, where inflation-level targeting is implemented in the Taylor rule.
+
+## `model_PLT.yaml`
+RANK model, where price-level targeting is implemented in the Taylor rule.
 
 ## `analysis.py`
-This file solves the model using [`econpizza`](https://github.com/gboehl/econpizza) by Gregor Böhl, PhD.
+This file contains a function which solves the model using [`econpizza`](https://github.com/gboehl/econpizza) by Gregor Böhl, PhD.
 
 ## `plot.py`
-This file plots the Impulse Response Functions.
+This file contains a function for creating the plots.
+
+## `run_all.py`
+This file runs all the necessary python files and creates a bld folder to save the data and plots.
