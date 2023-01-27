@@ -6,17 +6,6 @@ The paper deals with a non-linear medium-scale representative-agent New Keynesia
 
 ---
 
-## Usage
-
-To get started, create and activate the environment with
-
-.. code-block:: console
-
-    $ conda/mamba env create
-    $ conda activate med-scale-nk
-
----
-
 The src folder contains all relevant files to run the model:
 
 ## `model_ILT.yaml`
