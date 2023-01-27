@@ -7,13 +7,14 @@ import plotly.express as px
 def plot_irf(data,x,var1,var2, title):
     """ Plot the Impulse Response Functions.
     	Args:
-		data:
-		x:
-		y:
-		title:
-		yaxis_title:
-	Returns:
-		fig
+		    data: pd.DataFrame with the data for IRFs.
+		    x: variable for x-axis 
+		    y: variable for x-axis 
+		    title (str): title of plot.
+		    yaxis_title (str): title of y-axis.
+	
+        Returns:
+		    fig: Returns figure
     """
     fig = px.line(data,x=x,y=[var1,var2])
     fig.update_layout(

@@ -1,4 +1,4 @@
-""" Run the model. """
+""" Execute the analysis file, which runs the model and the plot file, which plots impulse response functions.  """
 
 import os
 import pandas as pd
@@ -6,6 +6,7 @@ import numpy as np
 from analysis import run_analysis
 from plot import plot_irf
 
+# Set directories
 current_dir = os.getcwd()
 parent_dir = os.path.dirname(current_dir)
 bld_dir = "bld"
@@ -13,29 +14,36 @@ bld_path = os.path.join(parent_dir, bld_dir)
 src_dir = "src"
 src_path = os.path.join(parent_dir, src_dir)
 
+# Create bld folder
 if not os.path.exists(bld_path):
     os.mkdir(bld_path)
 
+# Set inputs for function
 mod_ilt = os.path.join(src_path, "model_ILT.yaml")
 mod_plt = os.path.join(src_path, "model_PLT.yaml")
 shock_size = 0.05
 
+# Execute model 
 data = run_analysis(mod_ilt, mod_plt, shock_size)
 
+# Save the data 
 data.to_csv(os.path.join(bld_path, "model.csv"))
 
+# Select subset of variables
 varlist_ilt = ["c_ilt", "n_ilt", "pi_ilt", "w_ilt", "R_ilt", "y_ilt", "i_ilt", "piw_ilt", "b_ilt"]
 varlist_plt = ["c_plt", "n_plt", "pi_plt", "w_plt", "R_plt", "y_plt", "i_plt" , "piw_plt", "b_plt"]
 
 data_ilt=data[varlist_ilt]
 data_plt=data[varlist_plt]
 
+# Calculate steady state deviations
 steady_states_ilt = data_ilt[:1]
 steady_states_plt = data_plt[:1]
 
 ss_dev_ilt=100*((np.array(data_ilt)-np.array(steady_states_ilt))/np.array(steady_states_ilt))
 ss_dev_plt=100*((np.array(data_plt)-np.array(steady_states_plt))/np.array(steady_states_plt))
 
+# Save in data frame
 data_ss = np.column_stack([ss_dev_ilt, ss_dev_plt])
 data_ss = pd.DataFrame(data_ss)
 data_ss.columns = varlist_ilt + varlist_plt
@@ -44,6 +52,7 @@ periods = 40
 data_plot = data_ss.head(periods)
 x_plot = range(periods)
 
+# Plot IRFs
 fig_y = plot_irf(data=data_plot, x=x_plot, var1="y_ilt", var2="y_plt", title ="Output")
 fig_pi = plot_irf(data=data_plot, x=x_plot, var1="pi_ilt", var2="pi_plt", title="Price Inflation")
 fig_c = plot_irf(data=data_plot, x=x_plot, var1="c_ilt",var2="c_plt", title="Consumption")

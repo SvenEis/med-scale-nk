@@ -3,9 +3,18 @@
 import econpizza as ep
 import numpy as np
 import pandas as pd
-from config import BLD
 
 def run_analysis(mod_ilt, mod_plt, shock_size):
+    """ This function runs the model and saves the data.
+        
+        Args: 
+            mod_ilt: Path for the yaml file with ILT.
+            mod_plt: Path for the yaml file with PLT.
+            shock_size (float): Size of the shock.
+
+        Returns (csv): dataframe
+
+    """
 
     # Load yaml-files
     mod_ilt = mod_ilt
@@ -17,7 +26,7 @@ def run_analysis(mod_ilt, mod_plt, shock_size):
     mod_plt = ep.load(mod_plt)
     _ = mod_plt.solve_stst()
 
-    # positive risk premium shock of .005
+    # risk premium shock
     shock = ("e_rp", shock_size)
 
     # use the stacking method
