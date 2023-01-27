@@ -4,6 +4,15 @@ This repository contains the final project for the course "Research Module in Ma
 
 The paper deals with a non-linear medium-scale representative-agent New Keynesian model (RANK) and analyses the dynamic consequences of a risk premium shock, where a central bank deals either with inflation-level targeting (ILT) or price-level targeting (PLT).
 
+## Usage
+
+To get started, create and activate the environment with
+
+.. code-block:: console
+
+    $ conda/mamba env create
+    $ conda activate med-scale-nk
+
 ---
 
 The src folder contains all relevant files to run the model:
