@@ -17,7 +17,6 @@ equations:
     ~ p*Rk=alpha/(1-alpha)*(w*n)/(cap_util*k)
     ~ pitilde= piSS**a*pi**(1-a)
     ~ y_prod = (k*cap_util)**alpha*n**(1-alpha)
-    #~ MPK = alpha*mc*y/(cap_util*k) #checken ob diese gleichung stimmt
        
     # Households
     ~ lam = 1/(c-h*cLag) - beta*h/(cPrime-h*c)
@@ -31,9 +30,6 @@ equations:
     ~ cap_util_costs = RkSS/sigmaa*(exp(sigmaa*(cap_util-1))-1)
     ~ k = (1-delta)*kLag + (1 - phii/2*(i/iLag - 1)**2)*i
     ~ dd + c + t + phii/2*(i/iLag - 1)**2*i = (w/p)*n - phiw/2*(piw/piwSS - 1)**2 + rpLag*RLag/p*ddLag + (1 - mc - phip/2*(pi/pitildeLag - 1)**2)*y + (q*(1 - phii/2*(i/iLag - 1)**2) - 1)*i + bprof
-    # eigentlich w/p*n
-
-
 
     # Financial Intermediary
     ~ ds = qb*b + q*k
@@ -51,7 +47,6 @@ equations:
 
     # Clearing
     ~ c + i + g + phii/2*(i/iLag - 1)**2*i + cap_util_costs*k = (1-phip*(pi/pitildeLag - 1)**2/2)*y_prod
-    # (piw/piwSS - 1)**2/2  with our without?
     ~ c + i + g = y
 
     # Exogenous Process
@@ -67,7 +62,6 @@ steady_state:
         phip: 113.36
         delta: 0.025
         phii: 3.48
-        #phi_pi: 1.9
         phi_pi: 1.5
         phi_y: 0.1
         h: 0.52
@@ -95,4 +89,3 @@ steady_state:
 
     init_guesses:
         chi: 1e+1
-        #MPK: alpha*mc/20
